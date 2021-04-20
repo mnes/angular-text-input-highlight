@@ -53,7 +53,7 @@ export class DemoComponent implements OnInit {
 
   tags: HighlightTag[] = [];
 
-  tagClicked: HighlightTag;
+  tagClicked!: HighlightTag;
 
   ngOnInit(): void {
     this.addTags();
