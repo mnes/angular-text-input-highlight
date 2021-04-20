@@ -107,12 +107,12 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
   /**
    * The textarea to highlight
    */
-  @Input() textInputElement!: HTMLTextAreaElement;
+  @Input() textInputElement: HTMLTextAreaElement;
 
   /**
    * The textarea value, in not provided will fall back to trying to grab it automatically from the textarea
    */
-  @Input() textInputValue!: string;
+  @Input() textInputValue: string;
 
   /**
    * Called when the area over a tag is clicked
@@ -137,13 +137,13 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
   /**
    * @private
    */
-  highlightedText!: string;
+  highlightedText: string;
 
-  @ViewChild('highlightElement') private highlightElement!: ElementRef;
+  @ViewChild('highlightElement') private highlightElement: ElementRef;
 
   private textareaEventListeners: Array<() => void> = [];
 
-  private highlightTagElements!: Array<{
+  private highlightTagElements: Array<{
     element: HTMLElement;
     clientRect: ClientRect;
   }>;
@@ -152,7 +152,7 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
 
   private isDestroyed = false;
 
-  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) { }
+  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) {}
 
   /**
    * Manually call this function to refresh the highlight element if the textarea styles have changed
@@ -198,8 +198,8 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
     if (elementType !== 'textarea') {
       throw new Error(
         'The angular-text-input-highlight component must be passed ' +
-        'a textarea to the `textInputElement` input. Instead received a ' +
-        elementType
+          'a textarea to the `textInputElement` input. Instead received a ' +
+          elementType
       );
     }
 
@@ -290,7 +290,7 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
             throw new Error(
               `Highlight tag with indices [${tag.indices.start}, ${tag.indices
                 .end}] overlaps with tag [${prevTag.indices.start}, ${prevTag
-                  .indices.end}]`
+                .indices.end}]`
             );
           }
         });
@@ -325,7 +325,7 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
     parts.push('&nbsp;');
     this.highlightedText = parts.join('');
     this.cdr.detectChanges();
-    this.highlightTagElements = Array.from<HTMLElement>(
+    this.highlightTagElements = Array.from(
       this.highlightElement.nativeElement.getElementsByTagName('span')
     ).map((element: HTMLElement) => {
       return { element, clientRect: element.getBoundingClientRect() };

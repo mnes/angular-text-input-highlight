@@ -41,13 +41,13 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 class TestComponent {
-  text!: string;
+  text: string;
   tags: HighlightTag[] = [];
-  tagCssClass!: string;
+  tagCssClass: string;
   tagClick = sinon.spy();
   tagMouseEnter = sinon.spy();
   tagMouseLeave = sinon.spy();
-  textInputValue!: string;
+  textInputValue: string;
   refresh = sinon.spy();
 }
 
