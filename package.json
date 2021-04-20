@@ -66,19 +66,20 @@
   },
   "homepage": "https://github.com/mattlewis92/angular-text-input-highlight#readme",
   "devDependencies": {
-    "@angular/animations": "^6.1.10",
-    "@angular/cli": "^6.2.9",
-    "@angular/common": "^6.1.10",
-    "@angular/compiler": "^6.1.10",
-    "@angular/compiler-cli": "^6.1.10",
-    "@angular/core": "^6.1.10",
-    "@angular/forms": "^6.1.10",
-    "@angular/http": "^6.1.10",
-    "@angular/language-service": "^6.1.10",
-    "@angular/platform-browser": "^6.1.10",
-    "@angular/platform-browser-dynamic": "^6.1.10",
-    "@angular/platform-server": "^6.1.10",
-    "@angular/router": "^6.1.10",
+    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular/animations": "^7.2.16",
+    "@angular/cli": "^7.3.10",
+    "@angular/common": "^7.2.16",
+    "@angular/compiler": "^7.2.16",
+    "@angular/compiler-cli": "^7.2.16",
+    "@angular/core": "^7.2.16",
+    "@angular/forms": "^7.2.16",
+    "@angular/http": "^7.2.16",
+    "@angular/language-service": "^7.2.16",
+    "@angular/platform-browser": "^7.2.16",
+    "@angular/platform-browser-dynamic": "^7.2.16",
+    "@angular/platform-server": "^7.2.16",
+    "@angular/router": "^7.2.16",
     "@commitlint/cli": "^4.1.1",
     "@commitlint/config-conventional": "^8.3.4",
     "@commitlint/prompt": "^8.3.5",
@@ -125,7 +126,7 @@
     "tslint": "^5.7.0",
     "tslint-config-mwl": "^0.2.0",
     "tslint-loader": "^3.5.3",
-    "typescript": "^2.9.2",
+    "typescript": "^3.2.4",
     "webpack": "^3.6.0",
     "webpack-angular-externals": "^1.0.0",
     "webpack-dev-server": "^2.11.5",
@@ -140,6 +141,7 @@
     }
   },
   "dependencies": {
-    "rxjs-compat": "^6.0.0-rc.0"
+    "rxjs-compat": "^6.0.0-rc.0",
+    "tslib": "^1.9.0"
   }
 }
