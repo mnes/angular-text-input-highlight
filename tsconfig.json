@@ -12,7 +12,8 @@
       "dom"
     ],
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strictPropertyInitialization": false
   },
   "include": [
     "src/**/*",
