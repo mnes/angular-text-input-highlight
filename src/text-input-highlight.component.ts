@@ -152,7 +152,7 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
 
   private isDestroyed = false;
 
-  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) {}
+  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) { }
 
   /**
    * Manually call this function to refresh the highlight element if the textarea styles have changed
@@ -198,8 +198,8 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
     if (elementType !== 'textarea') {
       throw new Error(
         'The angular-text-input-highlight component must be passed ' +
-          'a textarea to the `textInputElement` input. Instead received a ' +
-          elementType
+        'a textarea to the `textInputElement` input. Instead received a ' +
+        elementType
       );
     }
 
@@ -290,7 +290,7 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
             throw new Error(
               `Highlight tag with indices [${tag.indices.start}, ${tag.indices
                 .end}] overlaps with tag [${prevTag.indices.start}, ${prevTag
-                .indices.end}]`
+                  .indices.end}]`
             );
           }
         });
@@ -325,7 +325,7 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
     parts.push('&nbsp;');
     this.highlightedText = parts.join('');
     this.cdr.detectChanges();
-    this.highlightTagElements = Array.from(
+    this.highlightTagElements = Array.from<HTMLElement>(
       this.highlightElement.nativeElement.getElementsByTagName('span')
     ).map((element: HTMLElement) => {
       return { element, clientRect: element.getBoundingClientRect() };
