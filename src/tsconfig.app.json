@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "angularCompilerOptions": {
+    "preserveWhitespaces": true
+  },
+  "files": [
+    "index.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ],
+}
