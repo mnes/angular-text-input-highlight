@@ -139,7 +139,7 @@ export class TextInputHighlightComponent implements OnChanges, OnDestroy {
    */
   highlightedText: string;
 
-  @ViewChild('highlightElement') private highlightElement: ElementRef;
+  @ViewChild('highlightElement', { static: true }) private highlightElement: ElementRef;
 
   private textareaEventListeners: Array<() => void> = [];
 

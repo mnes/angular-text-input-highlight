@@ -5,6 +5,6 @@
     "component-selector": [true, "element", "mwl", "kebab-case"],
     "pipe-naming": [true, "camelCase", "mwl"],
     "no-inferrable-types": false,
-    "use-host-property-decorator": false
+    "no-host-metadata-property": false
   }
 }
