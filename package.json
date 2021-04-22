@@ -66,19 +66,19 @@
   },
   "homepage": "https://github.com/mattlewis92/angular-text-input-highlight#readme",
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.29",
-    "@angular/animations": "^8.2.14",
-    "@angular/cli": "^8.3.29",
-    "@angular/common": "^8.2.14",
-    "@angular/compiler": "^8.2.14",
-    "@angular/compiler-cli": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "@angular/forms": "^8.2.14",
-    "@angular/language-service": "^8.2.14",
-    "@angular/platform-browser": "^8.2.14",
-    "@angular/platform-browser-dynamic": "^8.2.14",
-    "@angular/platform-server": "^8.2.14",
-    "@angular/router": "^8.2.14",
+    "@angular-devkit/build-angular": "~0.901.15",
+    "@angular/animations": "^9.1.13",
+    "@angular/cli": "^9.1.15",
+    "@angular/common": "^9.1.13",
+    "@angular/compiler": "^9.1.13",
+    "@angular/compiler-cli": "^9.1.13",
+    "@angular/core": "^9.1.13",
+    "@angular/forms": "^9.1.13",
+    "@angular/language-service": "^9.1.13",
+    "@angular/platform-browser": "^9.1.13",
+    "@angular/platform-browser-dynamic": "^9.1.13",
+    "@angular/platform-server": "^9.1.13",
+    "@angular/router": "^9.1.13",
     "@commitlint/cli": "^4.1.1",
     "@commitlint/config-conventional": "^8.3.4",
     "@commitlint/prompt": "^8.3.5",
@@ -86,13 +86,13 @@
     "@types/chai": "^4.0.4",
     "@types/html-webpack-plugin": "^2.11.2",
     "@types/mocha": "^2.2.43",
-    "@types/node": "^8.0.34",
+    "@types/node": "^12.11.1",
     "@types/sinon": "^2.3.6",
     "@types/sinon-chai": "^2.7.29",
     "@types/webpack": "^3.0.13",
     "chai": "^4.1.2",
     "codecov": "^2.3.0",
-    "codelyzer": "^5.0.1",
+    "codelyzer": "^5.1.2",
     "commitizen": "^2.8.1",
     "concurrently": "^3.0.0",
     "copyfiles": "^1.2.0",
@@ -130,7 +130,7 @@
     "webpack-angular-externals": "^1.0.0",
     "webpack-dev-server": "^2.11.5",
     "webpack-rxjs-externals": "^1.0.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.10.2"
   },
   "peerDependencies": {},
   "husky": {
@@ -141,6 +141,6 @@
   },
   "dependencies": {
     "rxjs-compat": "^6.0.0-rc.0",
-    "tslib": "^1.9.0"
+    "tslib": "^1.10.0"
   }
 }
