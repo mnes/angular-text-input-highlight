@@ -1,8 +1,5 @@
-import { __spreadArrays } from "tslib";
-import { Component, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
-import * as i0 from "@angular/core";
-import * as i1 from "@angular/common";
-var _c0 = ["highlightElement"];
+import { __decorate, __metadata, __spreadArrays } from "tslib";
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2, ViewChild } from '@angular/core';
 var styleProperties = Object.freeze([
     'direction',
     'boxSizing',
@@ -242,47 +239,52 @@ var TextInputHighlightComponent = /** @class */ (function () {
             this.mouseHoveredTag = undefined;
         }
     };
-    TextInputHighlightComponent.ɵfac = function TextInputHighlightComponent_Factory(t) { return new (t || TextInputHighlightComponent)(i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef)); };
-    TextInputHighlightComponent.ɵcmp = i0.ɵɵdefineComponent({ type: TextInputHighlightComponent, selectors: [["mwl-text-input-highlight"]], viewQuery: function TextInputHighlightComponent_Query(rf, ctx) { if (rf & 1) {
-            i0.ɵɵstaticViewQuery(_c0, true);
-        } if (rf & 2) {
-            var _t;
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.highlightElement = _t.first);
-        } }, hostBindings: function TextInputHighlightComponent_HostBindings(rf, ctx) { if (rf & 1) {
-            i0.ɵɵlistener("resize", function TextInputHighlightComponent_resize_HostBindingHandler() { return ctx.onWindowResize(); }, false, i0.ɵɵresolveWindow);
-        } }, inputs: { tagCssClass: "tagCssClass", tags: "tags", textInputElement: "textInputElement", textInputValue: "textInputValue" }, outputs: { tagClick: "tagClick", tagMouseEnter: "tagMouseEnter", tagMouseLeave: "tagMouseLeave" }, features: [i0.ɵɵNgOnChangesFeature], decls: 2, vars: 2, consts: [[1, "text-highlight-element", 3, "ngStyle", "innerHtml"], ["highlightElement", ""]], template: function TextInputHighlightComponent_Template(rf, ctx) { if (rf & 1) {
-            i0.ɵɵelement(0, "div", 0, 1);
-        } if (rf & 2) {
-            i0.ɵɵproperty("ngStyle", ctx.highlightElementContainerStyle)("innerHtml", ctx.highlightedText, i0.ɵɵsanitizeHtml);
-        } }, directives: [i1.NgStyle], encapsulation: 2 });
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], TextInputHighlightComponent.prototype, "tagCssClass", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], TextInputHighlightComponent.prototype, "tags", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", HTMLTextAreaElement)
+    ], TextInputHighlightComponent.prototype, "textInputElement", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], TextInputHighlightComponent.prototype, "textInputValue", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", Object)
+    ], TextInputHighlightComponent.prototype, "tagClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", Object)
+    ], TextInputHighlightComponent.prototype, "tagMouseEnter", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", Object)
+    ], TextInputHighlightComponent.prototype, "tagMouseLeave", void 0);
+    __decorate([
+        ViewChild('highlightElement', { static: true }),
+        __metadata("design:type", ElementRef)
+    ], TextInputHighlightComponent.prototype, "highlightElement", void 0);
+    __decorate([
+        HostListener('window:resize'),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], TextInputHighlightComponent.prototype, "onWindowResize", null);
+    TextInputHighlightComponent = __decorate([
+        Component({
+            selector: 'mwl-text-input-highlight',
+            template: "\n    <div\n      class=\"text-highlight-element\"\n      [ngStyle]=\"highlightElementContainerStyle\"\n      [innerHtml]=\"highlightedText\"\n      #highlightElement>\n    </div>\n  "
+        }),
+        __metadata("design:paramtypes", [Renderer2, ChangeDetectorRef])
+    ], TextInputHighlightComponent);
     return TextInputHighlightComponent;
 }());
 export { TextInputHighlightComponent };
-/*@__PURE__*/ (function () { i0.ɵsetClassMetadata(TextInputHighlightComponent, [{
-        type: Component,
-        args: [{
-                selector: 'mwl-text-input-highlight',
-                template: "\n    <div\n      class=\"text-highlight-element\"\n      [ngStyle]=\"highlightElementContainerStyle\"\n      [innerHtml]=\"highlightedText\"\n      #highlightElement>\n    </div>\n  "
-            }]
-    }], function () { return [{ type: i0.Renderer2 }, { type: i0.ChangeDetectorRef }]; }, { tagCssClass: [{
-            type: Input
-        }], tags: [{
-            type: Input
-        }], textInputElement: [{
-            type: Input
-        }], textInputValue: [{
-            type: Input
-        }], tagClick: [{
-            type: Output
-        }], tagMouseEnter: [{
-            type: Output
-        }], tagMouseLeave: [{
-            type: Output
-        }], highlightElement: [{
-            type: ViewChild,
-            args: ['highlightElement', { static: true }]
-        }], onWindowResize: [{
-            type: HostListener,
-            args: ['window:resize']
-        }] }); })();
 //# sourceMappingURL=text-input-highlight.component.js.map

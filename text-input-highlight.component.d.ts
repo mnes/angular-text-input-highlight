@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, Renderer2, SimpleChanges } from '@angular/core';
 import { HighlightTag } from './highlight-tag.interface';
-import * as i0 from "@angular/core";
 export interface TagMouseEvent {
     tag: HighlightTag;
     target: HTMLElement;
@@ -72,6 +71,4 @@ export declare class TextInputHighlightComponent implements OnChanges, OnDestroy
     private textInputElementChanged;
     private addTags;
     private handleTextareaMouseEvent;
-    static ɵfac: i0.ɵɵFactoryDef<TextInputHighlightComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<TextInputHighlightComponent, "mwl-text-input-highlight", never, { "tagCssClass": "tagCssClass"; "tags": "tags"; "textInputElement": "textInputElement"; "textInputValue": "textInputValue"; }, { "tagClick": "tagClick"; "tagMouseEnter": "tagMouseEnter"; "tagMouseLeave": "tagMouseLeave"; }, never, never>;
 }
