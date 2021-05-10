@@ -1,6 +1,6 @@
-import { __decorate, __metadata, __spreadArrays } from "tslib";
+import { __decorate, __metadata } from "tslib";
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2, ViewChild } from '@angular/core';
-var styleProperties = Object.freeze([
+const styleProperties = Object.freeze([
     'direction',
     'boxSizing',
     'width',
@@ -34,7 +34,7 @@ var styleProperties = Object.freeze([
     'tabSize',
     'MozTabSize'
 ]);
-var tagIndexIdPrefix = 'text-highlight-tag-id-';
+const tagIndexIdPrefix = 'text-highlight-tag-id-';
 function indexIsInsideTag(index, tag) {
     return tag.indices.start < index && index < tag.indices.end;
 }
@@ -48,8 +48,8 @@ function isCoordinateWithinRect(rect, x, y) {
 function escapeHtml(str) {
     return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
-var TextInputHighlightComponent = /** @class */ (function () {
-    function TextInputHighlightComponent(renderer, cdr) {
+let TextInputHighlightComponent = class TextInputHighlightComponent {
+    constructor(renderer, cdr) {
         this.renderer = renderer;
         this.cdr = cdr;
         /**
@@ -82,148 +82,142 @@ var TextInputHighlightComponent = /** @class */ (function () {
     /**
      * Manually call this function to refresh the highlight element if the textarea styles have changed
      */
-    TextInputHighlightComponent.prototype.refresh = function () {
-        var _this = this;
-        var computed = getComputedStyle(this.textInputElement);
-        styleProperties.forEach(function (prop) {
-            _this.highlightElementContainerStyle[prop] = computed[prop];
+    refresh() {
+        const computed = getComputedStyle(this.textInputElement);
+        styleProperties.forEach(prop => {
+            this.highlightElementContainerStyle[prop] = computed[prop];
         });
-    };
+    }
     /**
      * @private
      */
-    TextInputHighlightComponent.prototype.ngOnChanges = function (changes) {
+    ngOnChanges(changes) {
         if (changes.textInputElement) {
             this.textInputElementChanged();
         }
         if (changes.tags || changes.tagCssClass || changes.textInputValue) {
             this.addTags();
         }
-    };
+    }
     /**
      * @private
      */
-    TextInputHighlightComponent.prototype.ngOnDestroy = function () {
+    ngOnDestroy() {
         this.isDestroyed = true;
-        this.textareaEventListeners.forEach(function (unregister) { return unregister(); });
-    };
+        this.textareaEventListeners.forEach(unregister => unregister());
+    }
     /**
      * @private
      */
-    TextInputHighlightComponent.prototype.onWindowResize = function () {
+    onWindowResize() {
         this.refresh();
-    };
-    TextInputHighlightComponent.prototype.textInputElementChanged = function () {
-        var _this = this;
-        var elementType = this.textInputElement.tagName.toLowerCase();
+    }
+    textInputElementChanged() {
+        const elementType = this.textInputElement.tagName.toLowerCase();
         if (elementType !== 'textarea') {
             throw new Error('The angular-text-input-highlight component must be passed ' +
                 'a textarea to the `textInputElement` input. Instead received a ' +
                 elementType);
         }
-        setTimeout(function () {
+        setTimeout(() => {
             // in case the element was destroyed before the timeout fires
-            if (!_this.isDestroyed) {
-                _this.refresh();
-                _this.textareaEventListeners.forEach(function (unregister) { return unregister(); });
-                _this.textareaEventListeners = [
-                    _this.renderer.listen(_this.textInputElement, 'input', function () {
-                        _this.addTags();
+            if (!this.isDestroyed) {
+                this.refresh();
+                this.textareaEventListeners.forEach(unregister => unregister());
+                this.textareaEventListeners = [
+                    this.renderer.listen(this.textInputElement, 'input', () => {
+                        this.addTags();
                     }),
-                    _this.renderer.listen(_this.textInputElement, 'scroll', function () {
-                        _this.highlightElement.nativeElement.scrollTop = _this.textInputElement.scrollTop;
-                        _this.highlightTagElements = _this.highlightTagElements.map(function (tag) {
+                    this.renderer.listen(this.textInputElement, 'scroll', () => {
+                        this.highlightElement.nativeElement.scrollTop = this.textInputElement.scrollTop;
+                        this.highlightTagElements = this.highlightTagElements.map(tag => {
                             tag.clientRect = tag.element.getBoundingClientRect();
                             return tag;
                         });
                     }),
-                    _this.renderer.listen(_this.textInputElement, 'mouseup', function () {
-                        _this.refresh();
+                    this.renderer.listen(this.textInputElement, 'mouseup', () => {
+                        this.refresh();
                     })
                 ];
                 // only add event listeners if the host component actually asks for it
-                if (_this.tagClick.observers.length > 0) {
-                    var onClick = _this.renderer.listen(_this.textInputElement, 'click', function (event) {
-                        _this.handleTextareaMouseEvent(event, 'click');
+                if (this.tagClick.observers.length > 0) {
+                    const onClick = this.renderer.listen(this.textInputElement, 'click', event => {
+                        this.handleTextareaMouseEvent(event, 'click');
                     });
-                    _this.textareaEventListeners.push(onClick);
+                    this.textareaEventListeners.push(onClick);
                 }
-                if (_this.tagMouseEnter.observers.length > 0) {
-                    var onMouseMove = _this.renderer.listen(_this.textInputElement, 'mousemove', function (event) {
-                        _this.handleTextareaMouseEvent(event, 'mousemove');
+                if (this.tagMouseEnter.observers.length > 0) {
+                    const onMouseMove = this.renderer.listen(this.textInputElement, 'mousemove', event => {
+                        this.handleTextareaMouseEvent(event, 'mousemove');
                     });
-                    var onMouseLeave = _this.renderer.listen(_this.textInputElement, 'mouseleave', function (event) {
-                        if (_this.mouseHoveredTag) {
-                            _this.tagMouseLeave.emit(_this.mouseHoveredTag);
-                            _this.mouseHoveredTag = undefined;
+                    const onMouseLeave = this.renderer.listen(this.textInputElement, 'mouseleave', event => {
+                        if (this.mouseHoveredTag) {
+                            this.tagMouseLeave.emit(this.mouseHoveredTag);
+                            this.mouseHoveredTag = undefined;
                         }
                     });
-                    _this.textareaEventListeners.push(onMouseMove);
-                    _this.textareaEventListeners.push(onMouseLeave);
+                    this.textareaEventListeners.push(onMouseMove);
+                    this.textareaEventListeners.push(onMouseLeave);
                 }
-                _this.addTags();
+                this.addTags();
             }
         });
-    };
-    TextInputHighlightComponent.prototype.addTags = function () {
-        var _this = this;
-        var textInputValue = typeof this.textInputValue !== 'undefined'
+    }
+    addTags() {
+        const textInputValue = typeof this.textInputValue !== 'undefined'
             ? this.textInputValue
             : this.textInputElement.value;
-        var prevTags = [];
-        var parts = [];
-        __spreadArrays(this.tags).sort(function (tagA, tagB) {
+        const prevTags = [];
+        const parts = [];
+        [...this.tags]
+            .sort((tagA, tagB) => {
             return tagA.indices.start - tagB.indices.start;
         })
-            .forEach(function (tag) {
+            .forEach(tag => {
             if (tag.indices.start > tag.indices.end) {
-                throw new Error("Highlight tag with indices [" + tag.indices.start + ", " + tag.indices
-                    .end + "] cannot start after it ends.");
+                throw new Error(`Highlight tag with indices [${tag.indices.start}, ${tag.indices
+                    .end}] cannot start after it ends.`);
             }
-            prevTags.forEach(function (prevTag) {
+            prevTags.forEach(prevTag => {
                 if (overlaps(prevTag, tag)) {
-                    throw new Error("Highlight tag with indices [" + tag.indices.start + ", " + tag.indices
-                        .end + "] overlaps with tag [" + prevTag.indices.start + ", " + prevTag
-                        .indices.end + "]");
+                    throw new Error(`Highlight tag with indices [${tag.indices.start}, ${tag.indices
+                        .end}] overlaps with tag [${prevTag.indices.start}, ${prevTag
+                        .indices.end}]`);
                 }
             });
             // TODO - implement this as an ngFor of items that is generated in the template for a cleaner solution
-            var expectedTagLength = tag.indices.end - tag.indices.start;
-            var tagContents = textInputValue.slice(tag.indices.start, tag.indices.end);
+            const expectedTagLength = tag.indices.end - tag.indices.start;
+            const tagContents = textInputValue.slice(tag.indices.start, tag.indices.end);
             if (tagContents.length === expectedTagLength) {
-                var previousIndex = prevTags.length > 0 ? prevTags[prevTags.length - 1].indices.end : 0;
-                var before = textInputValue.slice(previousIndex, tag.indices.start);
+                const previousIndex = prevTags.length > 0 ? prevTags[prevTags.length - 1].indices.end : 0;
+                const before = textInputValue.slice(previousIndex, tag.indices.start);
                 parts.push(escapeHtml(before));
-                var cssClass = tag.cssClass || _this.tagCssClass;
-                var tagId = tagIndexIdPrefix + _this.tags.indexOf(tag);
+                const cssClass = tag.cssClass || this.tagCssClass;
+                const tagId = tagIndexIdPrefix + this.tags.indexOf(tag);
                 // text-highlight-tag-id-${id} is used instead of a data attribute to prevent an angular sanitization warning
-                parts.push("<span class=\"text-highlight-tag " + tagId + " " + cssClass + "\">" + escapeHtml(tagContents) + "</span>");
+                parts.push(`<span class="text-highlight-tag ${tagId} ${cssClass}">${escapeHtml(tagContents)}</span>`);
                 prevTags.push(tag);
             }
         });
-        var remainingIndex = prevTags.length > 0 ? prevTags[prevTags.length - 1].indices.end : 0;
-        var remaining = textInputValue.slice(remainingIndex);
+        const remainingIndex = prevTags.length > 0 ? prevTags[prevTags.length - 1].indices.end : 0;
+        const remaining = textInputValue.slice(remainingIndex);
         parts.push(escapeHtml(remaining));
         parts.push('&nbsp;');
         this.highlightedText = parts.join('');
         this.cdr.detectChanges();
-        this.highlightTagElements = Array.from(this.highlightElement.nativeElement.getElementsByTagName('span')).map(function (element) {
-            return { element: element, clientRect: element.getBoundingClientRect() };
+        this.highlightTagElements = Array.from(this.highlightElement.nativeElement.getElementsByTagName('span')).map((element) => {
+            return { element, clientRect: element.getBoundingClientRect() };
         });
-    };
-    TextInputHighlightComponent.prototype.handleTextareaMouseEvent = function (event, eventName) {
-        var matchingTagIndex = this.highlightTagElements.findIndex(function (elm) {
-            return isCoordinateWithinRect(elm.clientRect, event.clientX, event.clientY);
-        });
+    }
+    handleTextareaMouseEvent(event, eventName) {
+        const matchingTagIndex = this.highlightTagElements.findIndex(elm => isCoordinateWithinRect(elm.clientRect, event.clientX, event.clientY));
         if (matchingTagIndex > -1) {
-            var target = this.highlightTagElements[matchingTagIndex].element;
-            var tagClass = Array.from(target.classList).find(function (className) {
-                return className.startsWith(tagIndexIdPrefix);
-            });
+            const target = this.highlightTagElements[matchingTagIndex].element;
+            const tagClass = Array.from(target.classList).find(className => className.startsWith(tagIndexIdPrefix));
             if (tagClass) {
-                var tagId = tagClass.replace(tagIndexIdPrefix, '');
-                var tag = this.tags[+tagId];
-                var tagMouseEvent = { tag: tag, target: target, event: event };
+                const tagId = tagClass.replace(tagIndexIdPrefix, '');
+                const tag = this.tags[+tagId];
+                const tagMouseEvent = { tag, target, event };
                 if (eventName === 'click') {
                     this.tagClick.emit(tagMouseEvent);
                 }
@@ -238,53 +232,59 @@ var TextInputHighlightComponent = /** @class */ (function () {
             this.tagMouseLeave.emit(this.mouseHoveredTag);
             this.mouseHoveredTag = undefined;
         }
-    };
-    __decorate([
-        Input(),
-        __metadata("design:type", String)
-    ], TextInputHighlightComponent.prototype, "tagCssClass", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Array)
-    ], TextInputHighlightComponent.prototype, "tags", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", HTMLTextAreaElement)
-    ], TextInputHighlightComponent.prototype, "textInputElement", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", String)
-    ], TextInputHighlightComponent.prototype, "textInputValue", void 0);
-    __decorate([
-        Output(),
-        __metadata("design:type", Object)
-    ], TextInputHighlightComponent.prototype, "tagClick", void 0);
-    __decorate([
-        Output(),
-        __metadata("design:type", Object)
-    ], TextInputHighlightComponent.prototype, "tagMouseEnter", void 0);
-    __decorate([
-        Output(),
-        __metadata("design:type", Object)
-    ], TextInputHighlightComponent.prototype, "tagMouseLeave", void 0);
-    __decorate([
-        ViewChild('highlightElement', { static: true }),
-        __metadata("design:type", ElementRef)
-    ], TextInputHighlightComponent.prototype, "highlightElement", void 0);
-    __decorate([
-        HostListener('window:resize'),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
-    ], TextInputHighlightComponent.prototype, "onWindowResize", null);
-    TextInputHighlightComponent = __decorate([
-        Component({
-            selector: 'mwl-text-input-highlight',
-            template: "\n    <div\n      class=\"text-highlight-element\"\n      [ngStyle]=\"highlightElementContainerStyle\"\n      [innerHtml]=\"highlightedText\"\n      #highlightElement>\n    </div>\n  "
-        }),
-        __metadata("design:paramtypes", [Renderer2, ChangeDetectorRef])
-    ], TextInputHighlightComponent);
-    return TextInputHighlightComponent;
-}());
+    }
+};
+__decorate([
+    Input(),
+    __metadata("design:type", String)
+], TextInputHighlightComponent.prototype, "tagCssClass", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Array)
+], TextInputHighlightComponent.prototype, "tags", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", HTMLTextAreaElement)
+], TextInputHighlightComponent.prototype, "textInputElement", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", String)
+], TextInputHighlightComponent.prototype, "textInputValue", void 0);
+__decorate([
+    Output(),
+    __metadata("design:type", Object)
+], TextInputHighlightComponent.prototype, "tagClick", void 0);
+__decorate([
+    Output(),
+    __metadata("design:type", Object)
+], TextInputHighlightComponent.prototype, "tagMouseEnter", void 0);
+__decorate([
+    Output(),
+    __metadata("design:type", Object)
+], TextInputHighlightComponent.prototype, "tagMouseLeave", void 0);
+__decorate([
+    ViewChild('highlightElement', { static: true }),
+    __metadata("design:type", ElementRef)
+], TextInputHighlightComponent.prototype, "highlightElement", void 0);
+__decorate([
+    HostListener('window:resize'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TextInputHighlightComponent.prototype, "onWindowResize", null);
+TextInputHighlightComponent = __decorate([
+    Component({
+        selector: 'mwl-text-input-highlight',
+        template: `
+    <div
+      class="text-highlight-element"
+      [ngStyle]="highlightElementContainerStyle"
+      [innerHtml]="highlightedText"
+      #highlightElement>
+    </div>
+  `
+    }),
+    __metadata("design:paramtypes", [Renderer2, ChangeDetectorRef])
+], TextInputHighlightComponent);
 export { TextInputHighlightComponent };
 //# sourceMappingURL=text-input-highlight.component.js.map
