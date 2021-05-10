@@ -134,7 +134,15 @@
     "webpack-rxjs-externals": "^1.0.0",
     "zone.js": "~0.10.2"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@angular/core": "^9.1.13",
+    "@angular/forms": "^9.1.13",
+    "@angular/language-service": "^9.1.13",
+    "@angular/platform-browser": "^9.1.13",
+    "@angular/platform-browser-dynamic": "^9.1.13",
+    "@angular/platform-server": "^9.1.13",
+    "@angular/router": "^9.1.13"
+  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e",
