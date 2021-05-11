@@ -21,6 +21,7 @@
     "strictMetadataEmit": true,
     "genDir": "./dist/",
     "skipTemplateCodegen": true,
-    "trace": true
+    "trace": true,
+    "enableIvy": false
   }
 }
