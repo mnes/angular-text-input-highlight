@@ -1,0 +1,14 @@
+import { __decorate } from "tslib";
+import { Directive } from '@angular/core';
+let TextInputHighlightContainerDirective = class TextInputHighlightContainerDirective {
+};
+TextInputHighlightContainerDirective = __decorate([
+    Directive({
+        selector: '[mwlTextInputHighlightContainer]',
+        host: {
+            '[class.text-input-highlight-container]': 'true'
+        }
+    })
+], TextInputHighlightContainerDirective);
+export { TextInputHighlightContainerDirective };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGV4dC1pbnB1dC1oaWdobGlnaHQtY29udGFpbmVyLmRpcmVjdGl2ZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2FuZ3VsYXItdGV4dC1pbnB1dC1oaWdobGlnaHQvIiwic291cmNlcyI6WyJ0ZXh0LWlucHV0LWhpZ2hsaWdodC1jb250YWluZXIuZGlyZWN0aXZlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBUTFDLElBQWEsb0NBQW9DLEdBQWpELE1BQWEsb0NBQW9DO0NBQUcsQ0FBQTtBQUF2QyxvQ0FBb0M7SUFOaEQsU0FBUyxDQUFDO1FBQ1QsUUFBUSxFQUFFLGtDQUFrQztRQUM1QyxJQUFJLEVBQUU7WUFDSix3Q0FBd0MsRUFBRSxNQUFNO1NBQ2pEO0tBQ0YsQ0FBQztHQUNXLG9DQUFvQyxDQUFHO1NBQXZDLG9DQUFvQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERpcmVjdGl2ZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5ARGlyZWN0aXZlKHtcbiAgc2VsZWN0b3I6ICdbbXdsVGV4dElucHV0SGlnaGxpZ2h0Q29udGFpbmVyXScsXG4gIGhvc3Q6IHtcbiAgICAnW2NsYXNzLnRleHQtaW5wdXQtaGlnaGxpZ2h0LWNvbnRhaW5lcl0nOiAndHJ1ZSdcbiAgfVxufSlcbmV4cG9ydCBjbGFzcyBUZXh0SW5wdXRIaWdobGlnaHRDb250YWluZXJEaXJlY3RpdmUge31cbiJdfQ==

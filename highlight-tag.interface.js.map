@@ -1,1 +1,0 @@
-{"version":3,"file":"highlight-tag.interface.js","sourceRoot":"","sources":["../src/highlight-tag.interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface HighlightTag {\n  indices: {\n    start: number;\n    end: number;\n  };\n  cssClass?: string;\n  data?: any;\n}\n"]}

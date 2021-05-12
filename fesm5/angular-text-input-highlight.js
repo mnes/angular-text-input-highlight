@@ -1,5 +1,7 @@
-import { __decorate, __metadata, __spreadArrays } from "tslib";
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import { __spread, __decorate } from 'tslib';
+import { EventEmitter, Renderer2, ChangeDetectorRef, Input, Output, ViewChild, HostListener, Component, Directive, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 var styleProperties = Object.freeze([
     'direction',
     'boxSizing',
@@ -172,7 +174,7 @@ var TextInputHighlightComponent = /** @class */ (function () {
             : this.textInputElement.value;
         var prevTags = [];
         var parts = [];
-        __spreadArrays(this.tags).sort(function (tagA, tagB) {
+        __spread(this.tags).sort(function (tagA, tagB) {
             return tagA.indices.start - tagB.indices.start;
         })
             .forEach(function (tag) {
@@ -192,8 +194,8 @@ var TextInputHighlightComponent = /** @class */ (function () {
             var tagContents = textInputValue.slice(tag.indices.start, tag.indices.end);
             if (tagContents.length === expectedTagLength) {
                 var previousIndex = prevTags.length > 0 ? prevTags[prevTags.length - 1].indices.end : 0;
-                var before = textInputValue.slice(previousIndex, tag.indices.start);
-                parts.push(escapeHtml(before));
+                var before_1 = textInputValue.slice(previousIndex, tag.indices.start);
+                parts.push(escapeHtml(before_1));
                 var cssClass = tag.cssClass || _this.tagCssClass;
                 var tagId = tagIndexIdPrefix + _this.tags.indexOf(tag);
                 // text-highlight-tag-id-${id} is used instead of a data attribute to prevent an angular sanitization warning
@@ -239,52 +241,98 @@ var TextInputHighlightComponent = /** @class */ (function () {
             this.mouseHoveredTag = undefined;
         }
     };
+    TextInputHighlightComponent.ctorParameters = function () { return [
+        { type: Renderer2 },
+        { type: ChangeDetectorRef }
+    ]; };
     __decorate([
-        Input(),
-        __metadata("design:type", String)
+        Input()
     ], TextInputHighlightComponent.prototype, "tagCssClass", void 0);
     __decorate([
-        Input(),
-        __metadata("design:type", Array)
+        Input()
     ], TextInputHighlightComponent.prototype, "tags", void 0);
     __decorate([
-        Input(),
-        __metadata("design:type", HTMLTextAreaElement)
+        Input()
     ], TextInputHighlightComponent.prototype, "textInputElement", void 0);
     __decorate([
-        Input(),
-        __metadata("design:type", String)
+        Input()
     ], TextInputHighlightComponent.prototype, "textInputValue", void 0);
     __decorate([
-        Output(),
-        __metadata("design:type", Object)
+        Output()
     ], TextInputHighlightComponent.prototype, "tagClick", void 0);
     __decorate([
-        Output(),
-        __metadata("design:type", Object)
+        Output()
     ], TextInputHighlightComponent.prototype, "tagMouseEnter", void 0);
     __decorate([
-        Output(),
-        __metadata("design:type", Object)
+        Output()
     ], TextInputHighlightComponent.prototype, "tagMouseLeave", void 0);
     __decorate([
-        ViewChild('highlightElement', { static: true }),
-        __metadata("design:type", ElementRef)
+        ViewChild('highlightElement', { static: true })
     ], TextInputHighlightComponent.prototype, "highlightElement", void 0);
     __decorate([
-        HostListener('window:resize'),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        HostListener('window:resize')
     ], TextInputHighlightComponent.prototype, "onWindowResize", null);
     TextInputHighlightComponent = __decorate([
         Component({
             selector: 'mwl-text-input-highlight',
             template: "\n    <div\n      class=\"text-highlight-element\"\n      [ngStyle]=\"highlightElementContainerStyle\"\n      [innerHtml]=\"highlightedText\"\n      #highlightElement>\n    </div>\n  "
-        }),
-        __metadata("design:paramtypes", [Renderer2, ChangeDetectorRef])
+        })
     ], TextInputHighlightComponent);
     return TextInputHighlightComponent;
 }());
-export { TextInputHighlightComponent };
-//# sourceMappingURL=text-input-highlight.component.js.map
+
+var TextInputHighlightContainerDirective = /** @class */ (function () {
+    function TextInputHighlightContainerDirective() {
+    }
+    TextInputHighlightContainerDirective = __decorate([
+        Directive({
+            selector: '[mwlTextInputHighlightContainer]',
+            host: {
+                '[class.text-input-highlight-container]': 'true'
+            }
+        })
+    ], TextInputHighlightContainerDirective);
+    return TextInputHighlightContainerDirective;
+}());
+
+var TextInputElementDirective = /** @class */ (function () {
+    function TextInputElementDirective() {
+    }
+    TextInputElementDirective = __decorate([
+        Directive({
+            selector: 'textarea[mwlTextInputElement]',
+            host: {
+                '[class.text-input-element]': 'true'
+            }
+        })
+    ], TextInputElementDirective);
+    return TextInputElementDirective;
+}());
+
+var TextInputHighlightModule = /** @class */ (function () {
+    function TextInputHighlightModule() {
+    }
+    TextInputHighlightModule = __decorate([
+        NgModule({
+            declarations: [
+                TextInputHighlightComponent,
+                TextInputHighlightContainerDirective,
+                TextInputElementDirective
+            ],
+            imports: [CommonModule],
+            exports: [
+                TextInputHighlightComponent,
+                TextInputHighlightContainerDirective,
+                TextInputElementDirective
+            ]
+        })
+    ], TextInputHighlightModule);
+    return TextInputHighlightModule;
+}());
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+export { TextInputElementDirective, TextInputHighlightComponent, TextInputHighlightContainerDirective, TextInputHighlightModule };
+//# sourceMappingURL=angular-text-input-highlight.js.map
