@@ -7,6 +7,7 @@
   "typings": "./index.d.ts",
   "scripts": {
     "start": "concurrently --raw \"webpack-dev-server --open\" \"npm run test:watch\"",
+    "build": "ng-packagr -p package.json",
     "build:demo": "webpack -p",
     "build:umd": "webpack --config webpack.config.umd.ts",
     "build:ngc": "ngc -p tsconfig-ngc.json",
@@ -112,6 +113,7 @@
     "karma-webpack": "^2.0.5",
     "lint-staged": "^4.2.3",
     "mocha": "^4.0.1",
+    "ng-packagr": "^9.0.0",
     "node-sass": "^4.13.1",
     "prettier": "^1.7.4",
     "rxjs": "^6.6.7",
@@ -149,5 +151,10 @@
       "pre-commit": "lint-staged"
     }
   },
-  "dependencies": {}
+  "dependencies": {},
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/index.ts"
+    }
+  }
 }
