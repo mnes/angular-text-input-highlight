@@ -4,6 +4,7 @@
     "module": "es2015",
     "moduleResolution": "node",
     "declaration": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "baseUrl": "",
     "stripInternal": true,
@@ -21,6 +22,7 @@
     "strictMetadataEmit": true,
     "genDir": "./dist/",
     "skipTemplateCodegen": true,
-    "trace": true
+    "trace": true,
+    "enableIvy": false
   }
 }
